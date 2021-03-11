@@ -1,4 +1,8 @@
-print("Введите путь и/или имя файла:")
+#да простят меня боги за этот ужаснейший код 
+#код рассчитан на базу в которой все отсортированно по дате(как в вашем примере который я получил), иначе все сломаеться
+
+
+print("Введите полный или относительный путь к файлу:")
 
 path = input()
 
@@ -92,12 +96,59 @@ for line in f:
         f2.close()
 
 f.close()
+
+#сортируем по имени
+listOfLines = []
+f2 = open("result.csv", 'r')
+firstLine = f2.readline()
+for line in f2.readlines():
+    listOfLines.append(line)
+
+listOfLines.sort()
+f2.close()
+
+f2 = open("result.csv", 'w')
+f2.write(firstLine)
+for element in listOfLines:
+    f2.write(element)
+f2.close()
+
+#меняем тип даты
+f2 = open("result.csv", 'r')
+firstLine = f2.readline()
+nextLines = f2.read()
+listOfDates = firstLine.split(',')
+
+firstLine = listOfDates[0]
+i = 0 
+while i<len(listOfDates)-2:
+    i+=1
+    lOfDate = listOfDates[i].split(' ')
+    lOfDate[0] = lOfDate[0].replace('Jan', '01')
+    lOfDate[0] = lOfDate[0].replace('Feb', '02')
+    lOfDate[0] = lOfDate[0].replace('Mar', '03')
+    lOfDate[0] = lOfDate[0].replace('Apr', '04')
+    lOfDate[0] = lOfDate[0].replace('May', '05')
+    lOfDate[0] = lOfDate[0].replace('Jun', '06')
+    lOfDate[0] = lOfDate[0].replace('Jul', '07')
+    lOfDate[0] = lOfDate[0].replace('Aug', '08')
+    lOfDate[0] = lOfDate[0].replace('Sep', '09')
+    lOfDate[0] = lOfDate[0].replace('Oct', '10')
+    lOfDate[0] = lOfDate[0].replace('Nov', '11')
+    lOfDate[0] = lOfDate[0].replace('Dec', '12')
+    date = str(lOfDate[2] + '-' + lOfDate[0] + '-' + lOfDate[1])
+    firstLine = firstLine + ',' + date
+    print(firstLine)
+f2.close()
+
+f2 = open("result.csv", 'w')
+f2.write(firstLine + '\n' + nextLines)
+f2.close()
+
+#выводим результат в консоли
+f2 = open("result.csv", 'r')
+print(f2.read())
+f2.close()
+
 print('Результат сохранен в файле "result.csv".\nНажмите ENTER для завершения.')
 input()
-
-    
-
-
-    
-
-
