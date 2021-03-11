@@ -32,7 +32,34 @@ for line in f:
         f2.write(firstLine + date + ",\n" + nextLines)
         f2.close()
 
-  
+        if checkFirstDate == False:
+            f2 = open("result.csv", 'r')
+            firstLine = f2.readline()
+            firstLine = firstLine.split('\n')[0]
+            nextLines = f2.read()
+            f2.close()
+            f2 = open("result.csv", 'w')
+            f2.write(nextLines)
+            f2.close()
+
+            f2 = open("result.csv", 'r')
+
+            for line in f2.readlines():
+                
+                firstPart = nextLines.split(line)[0]
+                f2.seek(0)
+                secondPart = nextLines.split(line)[1] 
+                
+                line = line.split('\n')[0]
+                
+                nextLines = firstPart + line + '0,\n' + secondPart
+ 
+
+            f2 = open("result.csv", 'w')
+            f2.write(firstLine + '\n' + nextLines)
+            f2.close()
+        else:
+            checkFirstDate = False
     
     #ищем имя 
     f2 = open("result.csv", 'r')
@@ -47,6 +74,8 @@ for line in f:
             f2.close()
 
             line = line.split('\n')[0]
+            if line.find('0,') != -1:
+                line = line.split('0,')[0]
 
             f2 = open("result.csv", 'w')
             f2.write(firstPart + line + time + ',' + '\n' +  secondPart)
