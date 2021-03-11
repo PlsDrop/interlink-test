@@ -1,16 +1,13 @@
 #да простят меня боги за этот ужаснейший код 
 #код рассчитан на базу в которой все отсортированно по дате(как в вашем примере который я получил), иначе все сломаеться
 
-
 print("Введите полный или относительный путь к файлу:")
-
 path = input()
 
 checkFirstDate = True
 checkName = False
 
 f = open(path, 'r')
-
 f.readline()
 
 f2 = open("result.csv", 'w')
@@ -45,19 +42,14 @@ for line in f:
             f2 = open("result.csv", 'w')
             f2.write(nextLines)
             f2.close()
-
             f2 = open("result.csv", 'r')
 
             for line in f2.readlines():
-                
                 firstPart = nextLines.split(line)[0]
                 f2.seek(0)
                 secondPart = nextLines.split(line)[1] 
-                
                 line = line.split('\n')[0]
-                
                 nextLines = firstPart + line + '0,\n' + secondPart
- 
 
             f2 = open("result.csv", 'w')
             f2.write(firstLine + '\n' + nextLines)
@@ -81,15 +73,11 @@ for line in f:
             if line.find('0,') != -1:
                 line = line[:-2]
  
-
             f2 = open("result.csv", 'w')
             f2.write(firstPart + line + time + ',' + '\n' +  secondPart)
             f2.close()
             break
 
-    
-
-    
     if checkName == False:
         f2 = open("result.csv", 'a')
         f2.write(name + ',' + time + ',\n')
@@ -138,7 +126,6 @@ while i<len(listOfDates)-2:
     lOfDate[0] = lOfDate[0].replace('Dec', '12')
     date = str(lOfDate[2] + '-' + lOfDate[0] + '-' + lOfDate[1])
     firstLine = firstLine + ',' + date
-    print(firstLine)
 f2.close()
 
 f2 = open("result.csv", 'w')
