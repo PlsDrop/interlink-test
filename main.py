@@ -90,15 +90,9 @@ for line in f:
         f2 = open("result.csv", 'a')
         f2.write(name + ',' + time + ',\n')
         f2.close()
-    
-   
-   """  f2 = open("result.csv", 'r')
-    print(f2.read())
-    f2.close()
-    input() """
-    
+
 f.close()
-print('Результат сохранен в файле "result.csv".\n Нажмите ENTER для завершения.')
+print('Результат сохранен в файле "result.csv".\nНажмите ENTER для завершения.')
 input()
 
     
