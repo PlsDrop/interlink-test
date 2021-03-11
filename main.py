@@ -75,7 +75,8 @@ for line in f:
 
             line = line.split('\n')[0]
             if line.find('0,') != -1:
-                line = line.split('0,')[0]
+                line = line[:-2]
+ 
 
             f2 = open("result.csv", 'w')
             f2.write(firstPart + line + time + ',' + '\n' +  secondPart)
