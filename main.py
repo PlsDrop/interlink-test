@@ -129,7 +129,7 @@ while i<len(listOfDates)-2:
 f2.close()
 
 f2 = open("result.csv", 'w')
-f2.write(firstLine + '\n' + nextLines)
+f2.write(firstLine + ',\n' + nextLines)
 f2.close()
 
 #выводим результат в консоли
